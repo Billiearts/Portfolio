@@ -2,10 +2,23 @@
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mainNav = document.getElementById('mainNav');
 
-mobileMenuBtn.addEventListener('click', () => {
+function toggleMobileMenu() {
     mainNav.classList.toggle('active');
-    mobileMenuBtn.innerHTML = mainNav.classList.contains('active') ? 
+    const isActive = mainNav.classList.contains('active');
+    mobileMenuBtn.innerHTML = isActive ? 
         '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    document.body.style.overflow = isActive ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+// Close menu when clicking on nav links
+document.querySelectorAll('#mainNav a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (mainNav.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    });
 });
 
 // Smooth scrolling for navigation links
