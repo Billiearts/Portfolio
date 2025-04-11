@@ -334,17 +334,31 @@ nav ul li a:hover::after {
 }
 
 .platform-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.platform-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
 }
 
 .platform-card {
+    flex: 1;
+    min-width: 250px;
+    max-width: calc(33.333% - 20px);
     background: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     transition: var(--transition);
+}
+
+.platform-row:last-child .platform-card {
+    max-width: calc(50% - 15px);
 }
 
 .platform-card:hover {
@@ -379,6 +393,8 @@ nav ul li a:hover::after {
 .platform-link:hover {
     color: var(--accent);
 }
+
+
 
 /* Contact Section */
 .contact-options {
@@ -615,8 +631,23 @@ footer {
     body.nav-open {
         overflow: hidden;
     }
+    .platform-grid {
+        grid-template-columns: 1fr;
+    }
 
+    .platform-row {
+        flex-direction: column;
+    }
+    
+    .platform-card,
+    .platform-row:last-child .platform-card {
+        max-width: 100%;
+        min-width: 100%;
+    }
 }
+
+   
+
 
 /* Animations */
 @keyframes fadeIn {
